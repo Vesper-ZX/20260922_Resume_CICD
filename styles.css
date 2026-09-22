@@ -1,4 +1,3 @@
-/* 1. 中文用本地思源宋体，英文优先 Times New Roman。 */
 @font-face {
   font-family: "Resume Serif SC";
   src: url("assets/noto-serif-sc-400.woff2") format("woff2");
@@ -14,7 +13,6 @@
   font-display: swap;
 }
 :root {
-  /* 配色层级：墨绿主标题、古铜次标题、深灰正文、香槟色细线。 */
   --text: #343c38;
   --muted: #6d746d;
   --accent: #42635b;
@@ -47,7 +45,6 @@ h3 { font-size: 22px; font-weight: 600; color: var(--subheading); }
 .skip-link { position: fixed; top: -100px; left: 16px; z-index: 30; padding: 10px; background: white; }
 .skip-link:focus { top: 12px; }
 
-/* 2. 顶部只保留姓名和普通锚点导航。 */
 .site-header { position: sticky; top: 0; z-index: 10; background: #fbfaf6f5; backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
 .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 30px; min-height: 70px; }
 .brand { font-size: 24px; font-weight: 600; color: var(--text); white-space: nowrap; }
@@ -55,10 +52,8 @@ h3 { font-size: 22px; font-weight: 600; color: var(--subheading); }
 nav { display: flex; gap: 28px; }
 nav a { color: var(--muted); font-size: 17px; }
 nav a:hover { color: var(--accent); }
-/* JavaScript 只切换类名；选中时的外观仍由 CSS 负责。 */
 nav a.is-current { color: var(--heading); font-weight: 600; text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 2px; text-underline-offset: 7px; }
 
-/* 3. 个人介绍：文字和照片并排，基本资料全部展开。 */
 .hero { padding: 44px 0 32px; }
 .hero-top { display: flex; justify-content: space-between; align-items: center; gap: 32px; }
 h1 { font-size: 50px; font-weight: 600; color: var(--heading); letter-spacing: 2px; margin-bottom: 16px; }
@@ -77,7 +72,6 @@ h1 span { font-size: 32px; font-weight: 400; letter-spacing: 0; color: var(--sub
 .profile-details p { margin-top: 7px; font-size: 16px; }
 .profile-details a { overflow-wrap: anywhere; }
 
-/* 4. 正文平铺：主栏目保留浅底，科研子项目用纯文字、字重和间距分层。 */
 .section { border-top: 1px solid var(--line); padding: 42px 0 46px; }
 .section-heading { margin-bottom: 26px; }
 .section-heading h2 { display: inline-block; padding: 6px 20px 8px; border-left: 3px solid var(--gold); background: var(--heading-wash); border-radius: 0 4px 4px 0; }
@@ -96,10 +90,10 @@ h1 span { font-size: 32px; font-weight: 400; letter-spacing: 0; color: var(--sub
 .skills-list li { font-size: var(--body-size); }
 .skills-list strong { display: block; margin-bottom: 8px; font-weight: 600; color: var(--subheading); }
 .skills-list li { padding-top: 15px; border-top: 1px solid #c8baa2; }
-/* 作品图像是实际网站截图。Grid 管布局，CSS 过渡负责轻微悬停效果。 */
 #portfolio { background: #f4f2eb; }
+/* 作品区：桌面两列网格，640px 以下自动变一列（见文件末尾的媒体查询） */
 .portfolio-list { padding: 0; margin: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
-/* 卡片：两列网格里要允许收缩（min-width:0），并作为年份徽标的定位基准 */
+/* 卡片：相对定位，作为年份徽标的定位基准 */
 .work-card { position: relative; min-width: 0; }
 .work-card > a { display: block; height: 100%; border: 1px solid #ddd8cb; border-radius: 6px; overflow: hidden; background: #fffdf8; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
 .work-card > a:hover { text-decoration: none; transform: translateY(-4px); border-color: #b7a88d; box-shadow: 0 14px 30px #34433810; }
@@ -134,7 +128,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
 .footer-inner a { font-size: 16px; }
 .back-top { white-space: nowrap; }
 
-/* 5. 手机只调整布局，所有正文依旧直接可见。 */
 @media (max-width: 1000px) {
   .container { width: calc(100% - 64px); }
   nav { gap: 20px; }
@@ -189,7 +182,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   .footer-inner { display: block; }
   .footer-inner > div { margin-bottom: 16px; }
 }
-/* 尊重减少动态效果设置：保留阅读、键盘操作，关闭滚动和悬停动画。 */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *:before, *:after { transition: none !important; animation: none !important; }
@@ -209,10 +201,7 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   .work-card > a, .hero-visual figure { box-shadow: none; }
 }
 
-/* ---------- 第 4 课新增：四处由 JavaScript 控制的视觉效果 ---------- */
 
-/* 当前栏目指示器。固定在右下角，内容由 JS 写进去。
-   默认 opacity:0 —— 没写 JS 时它存在但看不见，一写就会浮现。 */
 .section-indicator {
   position: fixed;
   right: 20px;
@@ -229,10 +218,8 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   pointer-events: none;
   z-index: 20;
 }
-/* JS 往里写了文字之后，:not(:empty) 就命中了，标签自动浮现 */
 .section-indicator:not(:empty) { opacity: 1; transform: none; }
 
-/* 返回顶部按钮。默认隐藏，滚过一屏由 JS 加上 is-visible 才出现。 */
 .to-top {
   position: fixed;
   right: 20px;
@@ -255,8 +242,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
 .to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
 .to-top:hover { background: var(--heading-wash); }
 
-/* 让锚点跳转和"返回顶部"都平滑滚动。
-   prefers-reduced-motion 是系统里"减少动态效果"的设置，要尊重它。 */
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
@@ -266,9 +251,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   .to-top { right: 12px; bottom: 16px; width: 42px; height: 42px; }
 }
 
-/* TODO 01：顶部阅读进度条。
-   固定在页面最上沿，宽度由 JS 按滚动比例设置。
-   初始 width:0，所以不写 JS 时它存在但看不见。 */
 .reading-progress {
   position: fixed;
   top: 0;
@@ -280,10 +262,8 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   transition: width .08s linear;
 }
 
-/* TODO 07：栏目进入视口时淡入上移。
-   默认往下偏移 24px 且半透明；JS 给它加上 is-visible 才归位。
-   注意这里**不能**写成一开始就 display:none——那样没写 JS 的人
-   会看到一个空白页面，页面就彻底不可用了。半透明至少还看得见。 */
+/* 淡入：默认 opacity .28，只有 JS 加上 is-visible 才完全显示。
+ * 不要改成 display:none —— JS 失效时整页会空白，半透明至少还看得见。 */
 .section, .hero {
   opacity: .28;
   transform: translateY(24px);
@@ -294,13 +274,11 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   transform: none;
 }
 
-/* 系统开了"减少动态效果"时，一切照常显示，不做动画 */
 @media (prefers-reduced-motion: reduce) {
   .section, .hero { opacity: 1; transform: none; transition: none; }
   .reading-progress { transition: none; }
 }
 
-/* ---------- 第 5 课新增：筛选与排序工具条 ---------- */
 .works-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -323,7 +301,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
 }
 .works-tags button:hover,
 .works-sort:hover { border-color: #b8a27d; }
-/* 选中的标签用主色填充，一眼能看出"现在在筛什么" */
 .works-tags button[aria-pressed="true"] {
   border-color: #254a40;
   background: #254a40;
@@ -331,7 +308,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
 }
 .works-sort { margin-left: auto; }
 
-/* 年份徽标：贴在封面右上角（定位基准见上面的 .work-card） */
 .work-year {
   position: absolute;
   top: 12px;
@@ -345,7 +321,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   z-index: 2;
 }
 
-/* 没有作品时的提示，不要让列表空着什么都不说 */
 .works-empty {
   grid-column: 1 / -1;
   padding: 40px 0;
