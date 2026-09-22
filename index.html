@@ -11,17 +11,14 @@
   <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
   <!-- CSS 负责颜色、字体、布局；defer 让 JavaScript 在 HTML 解析完成后执行。 -->
   <link href="styles.css" rel="stylesheet"/>
-   <script src="works-data.js" defer></script>
-  <script src="works-render.js" defer></script>
-  <script src="app.js" defer></script>
+  <!-- 第 3 课只新增这一张样式表，不覆盖前两课的 styles.css。 -->
+  <link href="lesson-03-task.css" rel="stylesheet"/>
+ 
  </head>
  <body>
   <a class="skip-link" href="#main">
    跳到正文
   </a>
-  <!-- 第 4 课新增①：顶部阅读进度条，宽度由 JavaScript 控制 -->
-  <div class="reading-progress" id="reading-progress">
-  </div>
   <header class="site-header">
    <div class="container header-inner">
     <a class="brand" href="#about">
@@ -39,7 +36,7 @@
       科研
      </a>
      <a href="#skills">
-      技能
+      竞赛
      </a>
      <a href="#portfolio">
       作品
@@ -60,21 +57,21 @@
      <div class="hero-top">
       <div class="hero-copy">
        <h1>
-        林同学
+        高同学
         <span>
-         Lin
+         Gao
         </span>
        </h1>
        <p class="hero-role">
-        软件技术专业学生 · 前端开发学习者
+        人工智能技术应用专业学生 · Vibe Coding开发学习者
        </p>
        <p class="hero-school">
-        我的学校 · 我的班级
+        广东科学技术职业学院 · 25大模型应用产业学院班
        </p>
       </div>
       <div class="hero-visual">
        <figure>
-        <img alt="个人头像占位图，请替换为自己的图片" height="220" src="assets/avatar.svg" width="220"/>
+        <img height="220" src="assets/avatar.svg" width="220"/>
        </figure>
       </div>
      </div>
@@ -100,7 +97,7 @@
         所在城市
        </span>
        <p>
-        珠海
+        广东珠海
        </p>
       </div>
       <div>
@@ -108,7 +105,7 @@
         联系
        </span>
        <p>
-        请填写可公开的联系方式
+        versper_zx@qq.com
        </p>
       </div>
       <div>
@@ -116,7 +113,7 @@
         学校地址
        </span>
        <p>
-        请填写自己的学校地址
+        广东省珠海市金湾区珠海大道南侧65号
        </p>
       </div>
      </div>
@@ -127,7 +124,7 @@
     <div class="container">
      <header class="section-heading">
       <h2>
-       教育与工作经历
+       教育经历
       </h2>
      </header>
      <div class="section-content">
@@ -135,7 +132,7 @@
       <div class="experience-item">
        <p class="experience-heading">
         <strong>
-         我的学校 · 软件技术专业
+         广东科学技术职业学院 · 人工智能技术应用专业
         </strong>
         <time>
          在读
@@ -174,28 +171,28 @@
     <div class="container">
      <header class="section-heading">
       <h2>
-       技能与实践
+       竞赛经历
       </h2>
      </header>
      <div class="section-content">
       <ul class="skills-list">
        <li>
         <strong>
-         网页内容
+         国家级
         </strong>
-        HTML5 结构、图片、链接。
+        第十五届“中国软件杯”大学生软件设计大赛全国总决赛B1组二等奖
        </li>
        <li>
         <strong>
-         页面样式
+         省级
         </strong>
-        CSS3 字体、颜色、响应式布局。
+        第十七届蓝桥杯软件赛Java软件开发大学C组广东赛区三等奖
        </li>
        <li>
         <strong>
-         开发过程
+         校级
         </strong>
-        JavaScript、Git、检查与部署。
+        广东科学技术职业学院2026年“AI+”科技节之数学建模竞赛三等奖
        </li>
       </ul>
      </div>
@@ -208,18 +205,8 @@
        作品门户
       </h2>
       <p class="works-notice">
-       以下为教学示例，完成后可替换为自己的作品。
       </p>
      </header>
-     <!-- 第 5 课新增：筛选与排序工具条。里面的按钮由 JavaScript 生成，
-          不写 JS 时这里是空的，页面照常显示全部作品。 -->
-     <div class="works-toolbar">
-      <div class="works-tags" id="works-tags">
-      </div>
-      <button class="works-sort" id="works-sort" type="button">
-       按年份：新→旧
-      </button>
-     </div>
      <ol class="portfolio-list">
       <li class="work-card work-blog">
        <a href="https://ffd-p2-blog.netlify.app/" rel="noopener noreferrer" target="_blank">
@@ -336,12 +323,6 @@
     </div>
    </section>
   </main>
-  <!-- 第 4 课新增：这两块由 JavaScript 控制，不写 JS 时它们不会出现 -->
-  <p aria-live="polite" class="section-indicator" id="section-indicator">
-  </p>
-  <button aria-label="返回页面顶部" class="to-top" id="to-top" type="button">
-   ↑
-  </button>
   <footer>
    <div class="container footer-inner">
     <a href="#about">
@@ -354,3 +335,5 @@
   </footer>
  </body>
 </html>
+
+<!-- 本课任务详见课堂任务.md。 -->
