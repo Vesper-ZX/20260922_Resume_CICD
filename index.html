@@ -1,339 +1,219 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <meta content="noindex, nofollow" name="robots"/>
-  <meta content="课程练习：个人介绍、技能与作品门户。" name="description"/>
-  <title>
-   我的个人主页
-  </title>
-  <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
-  <!-- CSS 负责颜色、字体、布局；defer 让 JavaScript 在 HTML 解析完成后执行。 -->
-  <link href="styles.css" rel="stylesheet"/>
-  <!-- 第 3 课只新增这一张样式表，不覆盖前两课的 styles.css。 -->
-  <link href="lesson-03-task.css" rel="stylesheet"/>
- 
- </head>
- <body>
-  <a class="skip-link" href="#main">
-   跳到正文
-  </a>
-  <header class="site-header">
-   <div class="container header-inner">
-    <a class="brand" href="#about">
-     我的主页
-    </a>
-    <!-- href="#栏目ID" 是原生锚点：即使不加载 JavaScript，也能跳到对应栏目。 -->
-    <nav aria-label="主导航">
-     <a href="#about">
-      关于
-     </a>
-     <a href="#experience">
-      经历
-     </a>
-     <a href="#projects">
-      科研
-     </a>
-     <a href="#skills">
-      竞赛
-     </a>
-     <a href="#portfolio">
-      作品
-     </a>
-     <a href="#teaching">
-      教学
-     </a>
-     <a href="#publications">
-      成果
-     </a>
-    </nav>
-   </div>
-  </header>
-  <main id="main">
-   <!-- HTML 练习：修改姓名、研究方向、照片路径和联系方式。 -->
-   <section class="hero" id="about">
-    <div class="container">
-     <div class="hero-top">
-      <div class="hero-copy">
-       <h1>
-        高同学
-        <span>
-         Gao
-        </span>
-       </h1>
-       <p class="hero-role">
-        人工智能技术应用专业学生 · Vibe Coding开发学习者
-       </p>
-       <p class="hero-school">
-        广东科学技术职业学院 · 25大模型应用产业学院班
-       </p>
-      </div>
-      <div class="hero-visual">
-       <figure>
-        <img alt="个人头像" height="220" src="assets/avatar.svg" width="220"/>
-       </figure>
-      </div>
-     </div>
-     <div class="research-direction" id="research-direction">
-      <span class="eyebrow">
-       学习方向
-      </span>
-      <p>
-       HTML5、CSS3、JavaScript，正在学习 Git、数据库与网站部署。
-      </p>
-     </div>
-     <div class="profile-details">
-      <div>
-       <span>
-        学习阶段
-       </span>
-       <p>
-        在校学习
-       </p>
-      </div>
-      <div>
-       <span>
-        所在城市
-       </span>
-       <p>
-        广东珠海
-       </p>
-      </div>
-      <div>
-       <span>
-        联系
-       </span>
-       <p>
-        versper_zx@qq.com
-       </p>
-      </div>
-      <div>
-       <span>
-        学校地址
-       </span>
-       <p>
-        广东省珠海市金湾区珠海大道南侧65号
-       </p>
-      </div>
-     </div>
-    </div>
-   </section>
-   <!-- 每个栏目复用 section → container → 标题/内容 的结构，统一由 CSS 控制样式。 -->
-   <section class="section" id="experience">
-    <div class="container">
-     <header class="section-heading">
-      <h2>
-       教育经历
-      </h2>
-     </header>
-     <div class="section-content">
-      <!-- TASK-HTML：复制 experience-item 可增加一条自己的经历。 -->
-      <div class="experience-item">
-       <p class="experience-heading">
-        <strong>
-         广东科学技术职业学院 · 人工智能技术应用专业
-        </strong>
-        <time>
-         在读
-        </time>
-       </p>
-       <p class="experience-detail">
-        学习网页开发，用项目记录成长。
-       </p>
-      </div>
-     </div>
-    </div>
-   </section>
-   <section class="section" id="projects">
-    <div class="container">
-     <header class="section-heading">
-      <h2>
-       项目经历
-      </h2>
-     </header>
-     <div class="section-content">
-      <article class="research-item">
-       <h3>
-        <time>
-         课程练习
-        </time>
-        个人主页
-       </h3>
-       <p>
-        项目内容：制作自己的网页，展示资料与作品，记录修改、测试与发布过程。
-       </p>
-      </article>
-     </div>
-    </div>
-   </section>
-   <section class="section" id="skills">
-    <div class="container">
-     <header class="section-heading">
-      <h2>
-       竞赛经历
-      </h2>
-     </header>
-     <div class="section-content">
-      <ul class="skills-list">
-       <li>
-        <strong>
-         国家级
-        </strong>
-        第十五届“中国软件杯”大学生软件设计大赛全国总决赛B1组二等奖
-       </li>
-       <li>
-        <strong>
-         省级
-        </strong>
-        第十七届蓝桥杯软件赛Java软件开发大学C组广东赛区三等奖
-       </li>
-       <li>
-        <strong>
-         校级
-        </strong>
-        广东科学技术职业学院2026年“AI+”科技节之数学建模竞赛三等奖
-       </li>
-      </ul>
-     </div>
-    </div>
-   </section>
-   <section class="section" id="portfolio">
-    <div class="container">
-     <header class="section-heading">
-      <h2>
-       作品门户
-      </h2>
-      <p class="works-notice">
-      </p>
-     </header>
-     <ol class="portfolio-list">
-      <li class="work-card work-blog">
-       <a href="https://ffd-p2-blog.netlify.app/" rel="noopener noreferrer" target="_blank">
-        <div class="work-cover">
-         <img alt="长风成卷 · 博客应用的实际网页截图" decoding="async" height="800" src="assets/work-blog.png" width="1200"/>
-        </div>
-        <div class="work-copy">
-         <h3>
-          长风成卷 · 博客应用
-         </h3>
-         <p>
-          文章展示、接口与数据库。
-         </p>
-        </div>
-       </a>
-      </li>
-      <li class="work-card work-community">
-       <a href="https://ffd-p3-community.netlify.app/" rel="noopener noreferrer" target="_blank">
-        <div class="work-cover">
-         <img alt="群像云图 · 社区应用的实际网页截图" decoding="async" height="800" src="assets/work-community.png" width="1200"/>
-        </div>
-        <div class="work-copy">
-         <h3>
-          群像云图 · 社区应用
-         </h3>
-         <p>
-          内容发布与社区互动。
-         </p>
-        </div>
-       </a>
-      </li>
-      <li class="work-card work-greeting-card">
-       <a href="https://ffd-p4-greeting-card.netlify.app/" rel="noopener noreferrer" target="_blank">
-        <div class="work-cover">
-         <img alt="一笺心意 · 祝福卡片的实际网页截图" decoding="async" height="800" src="assets/work-greeting-card.png" width="1200"/>
-        </div>
-        <div class="work-copy">
-         <h3>
-          一笺心意 · 祝福卡片
-         </h3>
-         <p>
-          卡片制作与作品分享。
-         </p>
-        </div>
-       </a>
-      </li>
-      <li class="work-card work-music-station">
-       <a href="https://ffd-p5-music-station.netlify.app/" rel="noopener noreferrer" target="_blank">
-        <div class="work-cover">
-         <img alt="星声音乐站 · 音乐应用的实际网页截图" decoding="async" height="800" src="assets/work-music-station.png" width="1200"/>
-        </div>
-        <div class="work-copy">
-         <h3>
-          星声音乐站 · 音乐应用
-         </h3>
-         <p>
-          网页音频与交互实践。
-         </p>
-        </div>
-       </a>
-      </li>
-     </ol>
-    </div>
-   </section>
-   <section class="section" id="teaching">
-    <div class="container">
-     <header class="section-heading">
-      <h2>
-       学习与实践
-      </h2>
-     </header>
-     <div class="section-content">
-      <div class="teaching-group">
-       <h3>
-        本学期目标
-       </h3>
-       <ol>
-        <li>
-         每次课完成一个可运行的小改动。
-        </li>
-        <li>
-         能解释自己修改的 HTML、CSS 和 JavaScript。
-        </li>
-        <li>
-         使用 Git 记录版本，让作品能被别人访问。
-        </li>
-       </ol>
-      </div>
-     </div>
-    </div>
-   </section>
-   <section class="section" id="publications">
-    <div class="container">
-     <header class="section-heading">
-      <h2>
-       学习记录
-      </h2>
-     </header>
-     <div class="section-content">
-      <div class="publication-group">
-       <h3>
-        我的记录
-       </h3>
-       <ol class="references">
-        <li>
-         完成第一张个人主页。
-        </li>
-        <li>
-         后续在这里补充自己的真实成果。
-        </li>
-       </ol>
-      </div>
-     </div>
-    </div>
-   </section>
-  </main>
-  <footer>
-   <div class="container footer-inner">
-    <a href="#about">
-     回到顶部
-    </a>
-    <a href="#portfolio">
-     作品门户
-    </a>
-   </div>
-  </footer>
- </body>
-</html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="课程练习：个人介绍、技能与作品门户。">
+  <title>我的个人主页</title>
 
-<!-- 本课任务详见课堂任务.md。 -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <!-- 全站只有 styles.css 这一张样式表 -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- 两个脚本都用 defer：app.js = 导航高亮/进度条/返回顶部/淡入，works-render.js = 作品筛选排序 -->
+  <script src="app.js" defer></script>
+  <script src="works-render.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#about">我的主页</a>
+      <!-- 导航文字同时用作右下角"当前栏目"提示，改文字不影响跳转 -->
+      <nav aria-label="主导航">
+        <a href="#about">关于</a>
+        <a href="#experience">经历</a>
+        <a href="#projects">项目</a>
+        <a href="#skills">竞赛</a>
+        <a href="#portfolio">作品</a>
+        <a href="#teaching">学习</a>
+        <a href="#publications">记录</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 日常维护只改 index.html，不用动 CSS 和 JS -->
+    <!-- 加内容：复制对应栏目里的那一整块重复元素即可（每块前有提示） -->
+    <!-- 图片的 alt 不能删，tools/check-page.mjs 和 CI 都会检查 -->
+    <!-- 这 5 个 id 不能删：#reading-progress、#section-indicator、#to-top、#works-tags、#works-sort -->
+    <!-- 删掉任意一个，app.js 会报错，整页卡在半透明状态 -->
+
+    <section class="hero" id="about">
+      <div class="container">
+        <div class="hero-top">
+          <div class="hero-copy">
+            <h1>高同学 <span>Gao</span></h1>
+            <p class="hero-role">人工智能技术应用专业学生 · Vibe Coding开发学习者</p>
+            <p class="hero-school">广东科学技术职业学院 · 25大模型应用产业学院班</p>
+          </div>
+          <div class="hero-visual">
+            <figure><img src="assets/avatar.svg" alt="个人头像" width="220" height="220"></figure>
+          </div>
+        </div>
+        <div class="research-direction" id="research-direction">
+          <span class="eyebrow">学习方向</span>
+          <p>HTML5、CSS3、JavaScript，正在学习 Git、数据库与网站部署。</p>
+        </div>
+        <!-- 基本资料：加一条就复制一个 div -->
+        <div class="profile-details">
+          <div><span>学习阶段</span><p>在校学习</p></div>
+          <div><span>所在城市</span><p>广东珠海</p></div>
+          <div><span>联系</span><p>versper_zx@qq.com</p></div>
+          <div><span>学校地址</span><p>广东省珠海市金湾区珠海大道南侧65号</p></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section" id="experience">
+      <div class="container">
+        <header class="section-heading"><h2>教育经历</h2></header>
+        <div class="section-content">
+          <!-- 加一条经历：复制下面整个 <div class="experience-item"> -->
+          <div class="experience-item">
+            <p class="experience-heading">
+              <strong>广东科学技术职业学院 · 人工智能技术应用专业</strong>
+              <time>在读</time>
+            </p>
+            <p class="experience-detail">学习网页开发，用项目记录成长。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <header class="section-heading"><h2>项目经历</h2></header>
+        <div class="section-content">
+          <!-- 加一个项目：复制下面整个 <article class="research-item"> -->
+          <article class="research-item">
+            <h3><time>课程练习</time>个人主页</h3>
+            <p>项目内容：制作自己的网页，展示资料与作品，记录修改、测试与发布过程。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <header class="section-heading"><h2>竞赛经历</h2></header>
+        <div class="section-content">
+          <!-- 加一个奖项：复制一个 <li>，<strong> 里写级别 -->
+          <ul class="skills-list">
+            <li><strong>国家级</strong>第十五届“中国软件杯”大学生软件设计大赛全国总决赛B1组二等奖</li>
+            <li><strong>省级</strong>第十七届蓝桥杯软件赛Java软件开发大学C组广东赛区三等奖</li>
+            <li><strong>校级</strong>广东科学技术职业学院2026年“AI+”科技节之数学建模竞赛三等奖</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="container">
+        <header class="section-heading"><h2>作品门户</h2></header>
+        <div class="works-toolbar">
+          <div class="works-tags" id="works-tags"></div>
+          <button class="works-sort" id="works-sort" type="button">按年份：新→旧</button>
+        </div>
+        <!-- 新增作品：复制一个 <li class="work-card"> 整块，只改这 5 处 -->
+        <!-- data-tags 空格分隔的标签，用于筛选（写新标签会自动多一个按钮） -->
+        <!-- data-year 年份，用于排序，并显示在封面右上角 -->
+        <!-- a href 作品网址；img src/alt 截图路径 + 图片说明；h3/p 标题 + 一句话说明 -->
+        <!-- class 里的 work-xxx 只决定封面底色，不需要就只写 class="work-card" -->
+        <ol class="portfolio-list">
+          <li class="work-card work-blog" data-tags="前端 后端 数据库" data-year="2026">
+            <a href="https://ffd-p2-blog.netlify.app/" target="_blank" rel="noopener noreferrer">
+              <div class="work-cover">
+                <img src="assets/work-blog.png" alt="长风成卷 · 博客应用的实际网页截图" width="1200" height="800" decoding="async">
+              </div>
+              <div class="work-copy">
+                <h3>长风成卷 · 博客应用</h3>
+                <p>文章展示、接口与数据库。</p>
+              </div>
+            </a>
+          </li>
+          <li class="work-card work-community" data-tags="前端 数据库 部署" data-year="2026">
+            <a href="https://ffd-p3-community.netlify.app/" target="_blank" rel="noopener noreferrer">
+              <div class="work-cover">
+                <img src="assets/work-community.png" alt="群像云图 · 社区应用的实际网页截图" width="1200" height="800" decoding="async">
+              </div>
+              <div class="work-copy">
+                <h3>群像云图 · 社区应用</h3>
+                <p>内容发布与社区互动。</p>
+              </div>
+            </a>
+          </li>
+          <li class="work-card work-greeting-card" data-tags="前端 AI" data-year="2025">
+            <a href="https://ffd-p4-greeting-card.netlify.app/" target="_blank" rel="noopener noreferrer">
+              <div class="work-cover">
+                <img src="assets/work-greeting-card.png" alt="一笺心意 · 祝福卡片的实际网页截图" width="1200" height="800" decoding="async">
+              </div>
+              <div class="work-copy">
+                <h3>一笺心意 · 祝福卡片</h3>
+                <p>卡片制作与作品分享。</p>
+              </div>
+            </a>
+          </li>
+          <li class="work-card work-music-station" data-tags="前端 测试" data-year="2025">
+            <a href="https://ffd-p5-music-station.netlify.app/" target="_blank" rel="noopener noreferrer">
+              <div class="work-cover">
+                <img src="assets/work-music-station.png" alt="星声音乐站 · 音乐应用的实际网页截图" width="1200" height="800" decoding="async">
+              </div>
+              <div class="work-copy">
+                <h3>星声音乐站 · 音乐应用</h3>
+                <p>网页音频与交互实践。</p>
+              </div>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teaching">
+      <div class="container">
+        <header class="section-heading"><h2>学习与实践</h2></header>
+        <div class="section-content">
+          <div class="teaching-group">
+            <h3>本学期目标</h3>
+            <ol>
+              <li>每次课完成一个可运行的小改动。</li>
+              <li>能解释自己修改的 HTML、CSS 和 JavaScript。</li>
+              <li>使用 Git 记录版本，让作品能被别人访问。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="publications">
+      <div class="container">
+        <header class="section-heading"><h2>学习记录</h2></header>
+        <div class="section-content">
+          <div class="publication-group">
+            <h3>我的记录</h3>
+            <ol class="references">
+              <li>完成第一张个人主页。</li>
+              <li>后续在这里补充自己的真实成果。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <p class="section-indicator" id="section-indicator" aria-live="polite"></p>
+  <button class="to-top" id="to-top" type="button" aria-label="返回页面顶部">↑</button>
+
+  <footer>
+    <div class="container footer-inner">
+      <a href="#about">回到顶部</a>
+      <a href="#portfolio">作品门户</a>
+    </div>
+  </footer>
+</body>
+</html>

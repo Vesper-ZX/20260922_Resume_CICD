@@ -76,7 +76,6 @@ h1 span { font-size: 32px; font-weight: 400; letter-spacing: 0; color: var(--sub
 .profile-details > div > span { color: var(--subheading); font-size: 15px; }
 .profile-details p { margin-top: 7px; font-size: 16px; }
 .profile-details a { overflow-wrap: anywhere; }
-.birth-date { white-space: nowrap; }
 
 /* 4. 正文平铺：主栏目保留浅底，科研子项目用纯文字、字重和间距分层。 */
 .section { border-top: 1px solid var(--line); padding: 42px 0 46px; }
@@ -100,7 +99,8 @@ h1 span { font-size: 32px; font-weight: 400; letter-spacing: 0; color: var(--sub
 /* 作品图像是实际网站截图。Grid 管布局，CSS 过渡负责轻微悬停效果。 */
 #portfolio { background: #f4f2eb; }
 .portfolio-list { padding: 0; margin: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
-.work-card { min-width: 0; }
+/* 卡片：两列网格里要允许收缩（min-width:0），并作为年份徽标的定位基准 */
+.work-card { position: relative; min-width: 0; }
 .work-card > a { display: block; height: 100%; border: 1px solid #ddd8cb; border-radius: 6px; overflow: hidden; background: #fffdf8; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
 .work-card > a:hover { text-decoration: none; transform: translateY(-4px); border-color: #b7a88d; box-shadow: 0 14px 30px #34433810; }
 .work-card > a:focus-visible { outline-offset: 5px; }
@@ -208,8 +208,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   .work-cover { padding: 8px; }
   .work-card > a, .hero-visual figure { box-shadow: none; }
 }
-
-.works-notice { font-size: 15px; color: var(--muted); margin-top: 10px; }
 
 /* ---------- 第 4 课新增：四处由 JavaScript 控制的视觉效果 ---------- */
 
@@ -333,8 +331,7 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
 }
 .works-sort { margin-left: auto; }
 
-/* 年份徽标：贴在封面右上角 */
-.work-card { position: relative; }
+/* 年份徽标：贴在封面右上角（定位基准见上面的 .work-card） */
 .work-year {
   position: absolute;
   top: 12px;
