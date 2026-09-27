@@ -1,47 +1,38 @@
-// 第 5 课：作品数据。
+// 第 5 课的数据版本：作品数组。
 //
-// 每个对象代表一个作品。**数据和界面完全分开**——
-// 想加一个作品，只在这里加一个对象，HTML 一个字都不用动。
-// 这是本课最重要的一个观念。
+// 【它现在的身份：镜像，不是数据源】
+//   页面真正渲染的作品写在 index.html 的 <ol class="portfolio-list"> 里，
+//   筛选和排序由 works-render.js 完成——它读的是 HTML 的 data-tags / data-year，
+//   不读这个文件。所以**加作品、改标题仍然只改 index.html**。
+//   这个数组是一份同步副本，用来保留"数据和界面分开"的写法。
+//
+//   曾经它和页面对不上：图片指向 assets/work-blog.png 等四个早已不存在的文件，
+//   但页面看起来完全正常，人工发现不了。现在 tools/check-page.mjs 的第 5 项
+//   会逐条比对本文件与 index.html 的卡片：数量、标题、说明、封面、链接、年份、
+//   标签任何一处不一致，自检就会失败——改了页面忘了改这里，CI 会拦住。
 //
 // 六个字段各管一件事：
 //   title        卡片标题
 //   description  一句话说明
-//   image        封面图路径
-//   url          点击去哪
+//   image        封面图路径，必须是真实存在的文件（当前在 imgs/ 下）
+//   url          点击去哪，与 index.html 里 <a href> 保持一致
 //   year         年份，用来排序和显示右上角徽标
 //   tags         标签数组，用来筛选。一个作品可以有多个标签
 const works = [
   {
-    title: '长风成卷 · 博客应用',
-    description: '文章展示、接口与数据库。',
-    image: 'assets/work-blog.png',
-    url: 'https://ffd-p2-blog.netlify.app/',
+    title: '热点洞察',
+    description: '2026年海峡两岸暨港澳地区大学生计算机创新作品赛广东省赛优秀奖',
+    image: 'imgs/HotInsight.png',
+    url: '#',
     year: 2026,
     tags: ['前端', '后端', '数据库'],
   },
   {
-    title: '群像云图 · 社区应用',
-    description: '内容发布与社区互动。',
-    image: 'assets/work-community.png',
-    url: 'https://ffd-p3-community.netlify.app/',
+    title: '龙芯架构软件实训智能评价系统',
+    description: '“中国软件杯”大学生软件设计大赛B1组全国总决赛二等奖',
+    image: 'imgs/EvalAI.png',
+    url: '#',
     year: 2026,
     tags: ['前端', '数据库', '部署'],
-  },
-  {
-    title: '一笺心意 · 祝福卡片',
-    description: '卡片制作与作品分享。',
-    image: 'assets/work-greeting-card.png',
-    url: 'https://ffd-p4-greeting-card.netlify.app/',
-    year: 2025,
-    tags: ['前端', 'AI'],
-  },
-  {
-    title: '星声音乐站 · 音乐应用',
-    description: '网页音频与交互实践。',
-    image: 'assets/work-music-station.png',
-    url: 'https://ffd-p5-music-station.netlify.app/',
-    year: 2025,
-    tags: ['前端', '测试'],
   },
 ]

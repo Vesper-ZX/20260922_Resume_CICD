@@ -26,7 +26,8 @@
   --background: #fbfaf6;
 }
 * { box-sizing: border-box; }
-html { scroll-padding-top: 94px; scroll-behavior: smooth; }
+/* scroll-padding-top 给锚点跳转留出吸顶导航的高度；平滑滚动声明在文件末尾 */
+html { scroll-padding-top: 94px; }
 body {
   margin: 0;
   color: var(--text);
@@ -67,24 +68,26 @@ h1 span { font-size: 32px; font-weight: 400; letter-spacing: 0; color: var(--sub
 .research-direction > span { font-size: 20px; font-weight: 600; color: var(--subheading); }
 .research-direction p { margin-top: 8px; font-size: var(--body-size); }
 .research-direction strong { font-weight: 600; color: var(--heading); }
-.profile-details { display: grid; grid-template-columns: 1fr 1.15fr 1.1fr 1.4fr; gap: 28px; margin-top: 22px; }
+/* 基本资料：5 条信息排在同一行，列宽按内容自适应，gap 均匀分布在列之间 */
+.profile-details { display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; gap: 28px; margin-top: 22px; }
 .profile-details > div > span { color: var(--subheading); font-size: 15px; }
 .profile-details p { margin-top: 7px; font-size: 16px; }
 .profile-details a { overflow-wrap: anywhere; }
 
 .section { border-top: 1px solid var(--line); padding: 42px 0 46px; }
-.section-heading { margin-bottom: 26px; }
-.section-heading h2 { display: inline-block; padding: 6px 20px 8px; border-left: 3px solid var(--gold); background: var(--heading-wash); border-radius: 0 4px 4px 0; }
+/* 用 display:block + width:fit-content 让底色只包住文字。
+   不要改成 inline-block：行盒基线下会多出降部空隙（实测 18px），标题下间距会变宽 */
+.section-heading { display: block; width: fit-content; margin-bottom: 26px; padding: 6px 20px 8px; border-left: 3px solid var(--gold); background: var(--heading-wash); border-radius: 0 4px 4px 0; }
 .experience-item { margin-bottom: 26px; }
 .experience-item:last-child { margin-bottom: 0; }
 .experience-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
 .experience-heading strong { font-size: var(--body-size); font-weight: 600; color: #465951; }
-.experience-heading time { flex-shrink: 0; color: var(--muted); font-size: 16px; font-variant-numeric: tabular-nums; }
+.experience-heading .experience-status { flex-shrink: 0; color: var(--muted); font-size: 16px; font-variant-numeric: tabular-nums; }
 .experience-detail { margin-top: 8px; color: var(--text); font-size: var(--body-size); }
 .research-item { margin-bottom: 28px; }
 .research-item:last-child { margin-bottom: 0; }
 .research-item h3 { font-size: 20px; line-height: 1.9; }
-.research-item time { font-size: 16px; font-weight: 400; color: var(--muted); margin-right: 16px; }
+.research-item .research-source { font-size: 16px; font-weight: 400; color: var(--muted); margin-right: 16px; }
 .research-item p { font-size: var(--body-size); margin-top: 8px; line-height: 1.95; }
 .skills-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .skills-list li { font-size: var(--body-size); }
@@ -99,10 +102,10 @@ h1 span { font-size: 32px; font-weight: 400; letter-spacing: 0; color: var(--sub
 .work-card > a:hover { text-decoration: none; transform: translateY(-4px); border-color: #b7a88d; box-shadow: 0 14px 30px #34433810; }
 .work-card > a:focus-visible { outline-offset: 5px; }
 .work-cover { background: #e5e0d1; padding: 24px; overflow: hidden; }
+/* 封面底色：不加类＝默认米色，加 work-community＝绿色；要加新底色就在这里补一条 */
 .work-community .work-cover { background: #dbe5dc; }
-.work-greeting-card .work-cover { background: #ece0d9; }
-.work-music-station .work-cover { background: #dfe3e7; }
-.work-cover img { display: block; width: 100%; height: auto; aspect-ratio: 1.65; object-fit: cover; object-position: top; border: 1px solid #ffffffb3; border-radius: 3px; box-shadow: 0 8px 20px #2b393614; transition: transform .4s ease; }
+/* 封面图：按原始比例完整显示（不裁剪、不拉伸）——不要加 aspect-ratio，否则会被裁切 */
+.work-cover img { display: block; width: 100%; height: auto; object-fit: contain; border: 1px solid #ffffffb3; border-radius: 3px; box-shadow: 0 8px 20px #2b393614; transition: transform .4s ease; }
 .work-card > a:hover img { transform: scale(1.018); }
 .work-copy { position: relative; padding: 19px 26px 22px; }
 .work-copy h3 { color: var(--heading); font-size: 22px; padding-right: 28px; }
@@ -123,17 +126,14 @@ h1 span { font-size: 32px; font-weight: 400; letter-spacing: 0; color: var(--sub
 .references strong { font-weight: 600; color: var(--heading); }
 footer { border-top: 1px solid var(--line); padding: 25px 0; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
-.footer-name { font-size: 20px; }
-.footer-name > span { font-size: 17px; margin-left: 8px; color: var(--muted); }
 .footer-inner a { font-size: 16px; }
-.back-top { white-space: nowrap; }
 
 @media (max-width: 1000px) {
   .container { width: calc(100% - 64px); }
   nav { gap: 20px; }
   .profile-details { grid-template-columns: repeat(2, 1fr); gap: 16px 30px; }
   .experience-heading { display: block; }
-  .experience-heading time { display: block; margin-top: 4px; }
+  .experience-heading .experience-status { display: block; margin-top: 4px; }
   .work-cover { padding: 18px; }
   .work-copy { padding: 18px; }
   .work-copy h3 { font-size: 20px; }
@@ -161,14 +161,13 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   .profile-details p { font-size: 15px; }
   .profile-details > div > span { font-size: 14px; }
   .section { padding: 26px 0 28px; }
-  .section-heading { margin-bottom: 18px; }
-  .section-heading h2 { padding: 5px 14px 7px; }
+  .section-heading { margin-bottom: 18px; padding: 5px 14px 7px; }
   h2 { font-size: var(--title-size); }
   h3 { font-size: 20px; }
   .experience-heading strong { font-size: 18px; }
   .experience-detail { font-size: var(--body-size); }
   .research-item h3 { font-size: 18px; }
-  .research-item time { display: block; margin-right: 0; }
+  .research-item .research-source { display: block; margin-right: 0; }
   .research-item p { font-size: var(--body-size); }
   .skills-list { grid-template-columns: 1fr; gap: 14px; }
   .skills-list strong { margin-bottom: 2px; }
@@ -182,19 +181,16 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   .footer-inner { display: block; }
   .footer-inner > div { margin-bottom: 16px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *:before, *:after { transition: none !important; animation: none !important; }
-  .work-card > a:hover, .work-card > a:hover img { transform: none; }
-}
+/* 「减少动效」的处理集中在文件末尾一处，见最后的 @media (prefers-reduced-motion: reduce) */
+
 @media print {
-  .site-header, .skip-link, .back-top { display: none; }
+  .site-header, .skip-link { display: none; }
   .container { width: 100%; }
   .hero { padding-top: 0; }
   .section { padding: 20px 0; }
   .research-item, .experience-item, .references li { break-inside: avoid; }
   a { color: inherit; }
-  .section-heading h2, .research-item h3 { background: none; border: 0; padding-inline: 0; }
+  .section-heading, .research-item h3 { background: none; border: 0; padding-inline: 0; }
   #portfolio { background: none; }
   .work-card { break-inside: avoid; }
   .work-cover { padding: 8px; }
@@ -274,11 +270,6 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
   transform: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .section, .hero { opacity: 1; transform: none; transition: none; }
-  .reading-progress { transition: none; }
-}
-
 .works-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -330,4 +321,138 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; }
 
 @media (max-width: 640px) {
   .works-sort { margin-left: 0; }
+}
+
+/* ==================================================================
+   动效层（motion.js）
+   所有规则都以 <html class="motion-on"> 为前提：脚本没跑 / 系统关了动效，
+   这一整段都不生效，页面完全退回上面的静态样式。
+   ================================================================== */
+
+/* 01 错峰入场
+ * motion.js 接管了入场动画，所以整块栏目的统一淡入要让位——
+ * 否则「父元素整体淡入」和「子元素错峰淡入」会叠加，看起来发灰、发糊。 */
+.motion-on .section, .motion-on .hero { opacity: 1; transform: none; transition: none; }
+
+.motion-on .reveal-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity .62s cubic-bezier(.22, .61, .36, 1),
+    transform .62s cubic-bezier(.22, .61, .36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.motion-on .reveal-item.is-revealed { opacity: 1; transform: none; }
+
+/* 05 顶部导航收紧：滚过一段距离后压扁一点、加一层投影 */
+.motion-on .site-header { transition: box-shadow .3s ease, border-color .3s ease; }
+.motion-on .site-header.is-scrolled { box-shadow: 0 8px 24px #34433814; }
+/* 只在宽屏收紧：640px 以下导航换行成两行（min-height: 90px），压扁会把导航挤坏 */
+@media (min-width: 641px) {
+  .motion-on .header-inner { transition: min-height .32s cubic-bezier(.22, .61, .36, 1); }
+  .motion-on .site-header.is-scrolled .header-inner { min-height: 58px; }
+}
+
+/* 导航项：悬停时从左侧滑出一条金色细线。
+ * 注意要先把基础样式里的 a:hover 文字下划线关掉——
+ * styles.css 开头有 `a:hover { text-decoration: underline }`，
+ * 它是给正文链接用的；导航项这里已有金色滑线，不关掉就会出现上下两条线。
+ * 用 :not(.is-current) 限定范围，当前栏目的下划线（"你在这里"的标记）必须保留。 */
+.motion-on nav a:not(.is-current):hover { text-decoration: none; }
+
+.motion-on nav a { position: relative; }
+.motion-on nav a:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;          /* 与当前项下划线（text-underline-offset: 7px）对齐；想微调只改这一个值 */
+  height: 1px;          /* 比当前项的 2px 下划线细，一眼能分清「悬停」和「当前」 */
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .3s cubic-bezier(.22, .61, .36, 1);
+}
+/* 当前项不参与滑线（它有自己的下划线标记） */
+.motion-on nav a:not(.is-current):hover:before { transform: scaleX(1); }
+
+/* 02 头像视差：figure 的 transform 由 motion.js 逐帧写入，这里只关掉过渡，避免和逐帧更新打架 */
+.motion-on .hero-visual figure { will-change: transform; }
+
+/* 03 作品卡片 3D 倾斜
+ * --tilt-x / --tilt-y / --glow-x / --glow-y 都由 motion.js 写入，CSS 只负责把它们拼成 transform。
+ * 这样 JS 只管数据、CSS 只管表现，两边不用互相猜对方写了什么 transform。 */
+.motion-on .work-card > a {
+  position: relative;
+  transform:
+    perspective(1000px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transition:
+    transform .35s cubic-bezier(.22, .61, .36, 1),
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+/* 悬停时保留原来的上浮 4px，和倾斜效果合在一起 */
+.motion-on .work-card > a:hover {
+  transform:
+    perspective(1000px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg))
+    translateY(-4px);
+}
+/* 指针位置的柔光：跟着鼠标走的圆形高光，让卡面"有玻璃感"。
+ * 只铺在封面图上（不是整张卡）——盖到文字区会把说明文字冲淡，影响阅读。
+ * --glow-x/--glow-y 写在 <a> 上，靠 CSS 变量的继承传进这里。
+ * z-index: 1 是为了待在年份徽标（z-index: 2）下面。 */
+.motion-on .work-cover { position: relative; }
+.motion-on .work-cover:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    320px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    #ffffff38,
+    transparent 58%
+  );
+  opacity: 0;
+  transition: opacity .38s ease;
+}
+.motion-on .work-card > a:hover .work-cover:after { opacity: 1; }
+
+/* 04 FLIP：筛选 / 排序时先让卡片脱离网格的默认流，动画由 Web Animations API 驱动。
+ * 这里只需保证卡片不会被父级的裁切掉——否则平移到一半会被切头。 */
+.motion-on .portfolio-list > li { will-change: transform, opacity; }
+
+/* 竞赛条目：悬停时金线加深 + 轻微上浮，给列表一点"可读"的反馈 */
+.motion-on .skills-list li {
+  transition: border-top-color .3s ease, transform .3s ease;
+}
+.motion-on .skills-list li:hover {
+  border-top-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+/* 收尾小细节：进度条带一点辉光，返回顶部按钮悬停再浮一点 */
+.motion-on .reading-progress { box-shadow: 0 0 10px #b8a27d80; }
+.motion-on .to-top.is-visible:hover { transform: translateY(-3px); }
+
+/* 打印安全：纸上不需要动效，也绝不能出现"还没入场 = 一片空白"。
+ * 打开页面直接按 Ctrl+P 时，屏幕外的元素可能还没滚动到、还没加上 is-revealed。 */
+@media print {
+  .motion-on .reveal-item { opacity: 1 !important; transform: none !important; }
+  .motion-on .section, .motion-on .hero { opacity: 1 !important; transform: none !important; }
+  .motion-on .site-header { box-shadow: none; }
+  .motion-on nav a:before { display: none; }
+}
+
+/* 减少动效：只关 transition 不够，opacity / transform 必须写回来，
+   否则 .section / .hero 会一直停在 opacity .28 的半透明状态 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *:before, *:after { transition: none !important; animation: none !important; }
+  .section, .hero { opacity: 1 !important; transform: none !important; }
+  .work-card > a:hover, .work-card > a:hover img { transform: none !important; }
 }
