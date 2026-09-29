@@ -1,48 +1,38 @@
-// motion.js —— 页面动效层（只做增强，不接管任何功能）
+// 动效层：只做增强，不接管任何功能。整个文件删掉，页面照常能读能点。
 //
-// 三条原则：
-//   1. 渐进增强：脚本挂了，页面照常能读能点，只是少了动效。
-//   2. 不碰 app.js / works-render.js 的逻辑，只"搭"在它们已经做好的结果上。
-//   3. 尊重系统设置：用户在操作系统里关掉动效，这里整体跳过，退回静态样式。
+// 两条约定：
+//   1. 不碰 app.js / works-render.js 的逻辑，只搭在它们已经做好的结果上。
+//   2. 所有动效样式都挂在 <html class="motion-on"> 下（见 styles.css 末尾），
+//      没有这个类就一条都不生效——这就是"关了动效就完全回到静态样式"。
 //
 // 效果清单：
-//   01 栏目内容按顺序错峰上浮淡入（首屏 + 每个栏目）
-//   02 头像跟随鼠标轻微视差倾斜
-//   03 作品卡片悬停时轻微 3D 倾斜 + 高光跟着指针走
-//   04 作品筛选 / 排序时，卡片位置变化走 FLIP 平移动画
-//   05 页面往下滚后，顶部导航收紧
-//
-// 实现约定：所有动效样式都挂在 <html class="motion-on"> 下（见 styles.css 末尾）。
-// 没有这个类，styles.css 里的动效规则一条都不生效——这就是"关了动效就完全回到原样"。
+//   01 栏目内容按顺序错峰上浮淡入   02 头像跟随鼠标轻微视差
+//   03 作品卡片悬停 3D 倾斜 + 高光    04 筛选 / 排序走 FLIP 平移动画
+//   05 正文滚动后侧栏压出一层投影
 
 const motionReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 // ============ 01 错峰入场 ============
-// 从"整块栏目一起淡入"升级成"栏目里的元素一个一个浮上来"。
-// 元素不写死在 HTML 里，而是由下面的选择器自动认领——
+// 元素不写死在 HTML 里，由下面的选择器自动认领——
 // 以后在 index.html 里加一条经历 / 一个奖项 / 一张作品卡，动效自动带上。
-
 const REVEAL_SELECTORS = [
   '.hero-copy > *',          // 姓名、身份、学校
   '.hero-visual',            // 头像
   '.research-direction',     // 学习方向
-  '.profile-details > div',  // 基本资料 5 条
+  '.profile-details > div',  // 基本资料
   '.section-heading',        // 每个栏目的标题
   '.experience-item',        // 教育经历
   '.research-item',          // 项目经历
   '.skills-list > li',       // 竞赛奖项
   '.works-toolbar',          // 作品筛选栏
   '.portfolio-list > li',    // 作品卡片
-  '.teaching-group > h3',    // 学习与实践
-  '.teaching-group li',
-  '.publication-group > h3', // 学习记录
-  '.references > li',
+  '.group > h3',             // 项目经历 / 竞赛经历 / 学习记录的小节标题
+  '.group > ol > li',
 ]
 
 const REVEAL_STEP = 60     // 相邻两项之间隔多久（毫秒）
-// 单批等待上限。首屏一共 10 项（姓名/身份/学校/头像/方向 + 资料 5 条），
-// 取 540 刚好让这 10 项都排得上队、从左到右依次浮现；
-// 又不会让条目很多的栏目等到天荒地老。
+// 单批等待上限：让首屏那批（姓名/身份/学校/头像/方向 + 资料 5 条）都排得上队，
+// 又不至于让条目很多的栏目等到天荒地老。
 const REVEAL_MAX_DELAY = 540
 
 function startReveal() {
@@ -74,7 +64,7 @@ function startReveal() {
 }
 
 // 按选择器挨个收，去重后再按文档顺序排——
-// 保证"错峰"的顺序和眼睛看到的从上到下顺序完全一致。
+// 保证"错峰"顺序和眼睛看到的从上到下顺序一致。
 function collectRevealTargets(scope) {
   const targets = []
   for (const selector of REVEAL_SELECTORS) {
@@ -87,18 +77,18 @@ function collectRevealTargets(scope) {
   )
 }
 
-// ============ 05 顶部导航收紧 ============
-// 只切一个类名，长什么样由 CSS 决定。
-function startHeaderShrink() {
-  const header = document.querySelector('.site-header')
-  if (!header) return
+// ============ 05 侧栏投影 ============
+// 只切一个类名，长什么样由 CSS 决定（宽屏往右投、窄屏往下投）。
+function startSidebarShadow() {
+  const sidebar = document.querySelector('.sidebar')
+  if (!sidebar) return
 
   let queued = false
   const update = () => {
     queued = false
-    header.classList.toggle('is-scrolled', window.scrollY > 40)
+    sidebar.classList.toggle('is-scrolled', window.scrollY > 40)
   }
-  // 滚动一秒能触发几十次，用 rAF 压成每帧最多算一次
+  // 滚动一秒触发几十次，用 rAF 压成每帧最多算一次
   window.addEventListener('scroll', () => {
     if (queued) return
     queued = true
@@ -108,8 +98,8 @@ function startHeaderShrink() {
 }
 
 // ============ 02 头像视差 ============
-// 鼠标在首屏移动时，头像朝反方向轻微位移 + 旋转，做出"浮起来"的层次感。
-// 用「缓动追目标值」而不是直接用鼠标坐标：坐标是跳变的，追值才是顺滑的。
+// 鼠标在首屏移动时头像轻微位移 + 旋转。用「缓动追目标值」而不是直接用鼠标坐标：
+// 坐标是跳变的，追值才是顺滑的。
 function startHeroParallax() {
   const hero = document.querySelector('main .hero[id]')
   const figure = hero && hero.querySelector('.hero-visual figure')
@@ -152,12 +142,11 @@ function startHeroParallax() {
 }
 
 // ============ 03 作品卡片 3D 倾斜 ============
-// 只写 CSS 变量，真正拼 transform 的是 styles.css——
-// 这样 JS 不用去猜 CSS 里已经有哪些 transform，互不打架。
+// 只写 CSS 变量，真正拼 transform 的是 styles.css，两边互不打架。
 // 卡片被 works-render.js 重排时是复用的（不重建），所以这里绑一次的监听不会丢。
 function startCardTilt() {
   const cards = document.querySelectorAll('.work-card > a')
-  const MAX_TILT = 5 // 度。这个页面是安静的衬线风格，倾斜别给太大
+  const MAX_TILT = 5 // 度。页面是安静的衬线风格，倾斜别给太大
 
   cards.forEach(card => {
     card.addEventListener('mousemove', event => {
@@ -178,11 +167,10 @@ function startCardTilt() {
 }
 
 // ============ 04 筛选 / 排序的 FLIP 动画 ============
-// FLIP = First（先量旧位置）、Last（重排后量新位置）、Invert（算出位移差）、Play（动回去）。
-// 关键点：用**捕获阶段**监听。
-// 事件的传播顺序是「捕获 → 目标 → 冒泡」，
-// 所以工具栏上的捕获监听一定早于按钮自己（works-render.js）的冒泡监听执行，
-// 正好赶上"重排发生之前"量第一遍位置。
+// FLIP = 先量旧位置、重排后量新位置、算出位移差、再动回去。
+// 关键点：用**捕获阶段**监听（第三个参数 true）。
+// 事件传播顺序是「捕获 → 目标 → 冒泡」，所以工具栏上的捕获监听一定早于
+// 按钮自己（works-render.js）的冒泡监听执行，正好赶上"重排发生之前"量第一遍位置。
 // 好处：一行都不用改 works-render.js，两个文件互不干扰。
 function startWorksFlip() {
   const list = document.querySelector('.portfolio-list')
@@ -195,8 +183,7 @@ function startWorksFlip() {
       before.set(card, card.getBoundingClientRect())
     })
 
-    // 等这一刻的同步代码全部跑完（重排已落地）再量第二遍。
-    // requestAnimationFrame 的回调在当前任务之后才执行，时间刚刚好。
+    // 等这一刻的同步代码全部跑完（重排已落地）再量第二遍
     requestAnimationFrame(() => {
       list.querySelectorAll('.work-card').forEach(card => {
         const last = card.getBoundingClientRect()
@@ -225,15 +212,13 @@ function startWorksFlip() {
   }, true)
 }
 
-// ============ 收尾：统一启动 ============
-// 启动必须放在文件最后！
-// 上面的 REVEAL_SELECTORS 等常量是 const 声明的，有"暂时性死区"——
-// 在它们执行到之前就调用 startReveal()，会直接抛
-// "Cannot access 'REVEAL_SELECTORS' before initialization"。
-// 函数声明会提升，const 不会，这个坑很隐蔽：脚本一挂，整页动效全没了。
+// ============ 统一启动 ============
+// 启动必须放在文件最后：上面的 REVEAL_SELECTORS 等常量是 const 声明的，
+// 有"暂时性死区"，在它们初始化前调用 startReveal() 会直接抛错。
+// 函数声明会提升、const 不会，这个坑很隐蔽：脚本一挂整页动效全没了。
 if (!motionReduce) {
   document.documentElement.classList.add('motion-on')
-  startHeaderShrink()  // 05
+  startSidebarShadow() // 05
   startReveal()        // 01
   startHeroParallax()  // 02
   startCardTilt()      // 03

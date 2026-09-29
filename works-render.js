@@ -1,7 +1,7 @@
 // 作品筛选与排序。所有作品内容（标题/链接/截图）都写在 index.html 的 <ol class="portfolio-list"> 里。
 // 本文件只做三件事：按 data-year 生成年份徽标、按 data-tags 生成筛选按钮、点按钮重排或隐藏卡片。
-// 加作品或改标题只改 index.html，这里一行都不用动。
-// data-* 是 HTML5 自定义数据属性，写在标签上，JS 用 dataset 读取。
+// 加作品或改标题只改 index.html：
+//   data-tags 筛选标签 ｜ data-year 年份 ｜ img src+alt 截图 ｜ h3+p 标题与说明
 
 const list = document.querySelector('.portfolio-list')
 const tagBox = document.querySelector('#works-tags')

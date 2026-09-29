@@ -2,7 +2,7 @@
 //
 // 用法：node tools/check-page.mjs
 //
-// 它做八件事，都是人工检查很容易漏、机器检查很快的：
+// 它做八件事：
 //   1. 必须有的文件在不在
 //   2. index.html 里有没有编辑器残留属性（data-page-node-id 之类）
 //   3. id 是否唯一、5 个必需 id 是否都在
@@ -12,8 +12,8 @@
 //   7. 每张图片有没有像样的 alt
 //   8. works-data.js 的作品数组和 index.html 里的卡片是不是一一对应
 //
-// 第 2~4 项守的是「加内容只改 index.html」这条约定：
-// 日常维护只动 HTML，写错了这里就拦住，不用靠人眼盯着。
+// 第 2~4 项守的是「加内容只改 index.html」这条约定：日常维护只动 HTML，
+// 写错了这里就拦住，不用靠人眼盯着。
 //
 // 不依赖任何第三方包，Node 24 自带的能力就够。
 // GitHub Actions 里也跑这一条，所以推上去之前先在本地跑一次。
@@ -46,8 +46,8 @@ const html = fs.readFileSync(htmlPath, 'utf8');
 const markup = html.replace(/<!--[\s\S]*?-->/g, '');
 
 console.log('\n== 2. 编辑器残留属性 ==');
-// data-page-node-id 是页面编辑器写进标签里的内部元数据。全项目没有任何代码读它，
-// 却占了 index.html 约三分之一的体积，还带出过重复值。这里盯着它，别让它再写回来。
+// data-page-node-id 是页面编辑器写进标签里的内部元数据，全项目没有任何代码读它。
+// 这里盯着它，别让它再写回来。
 const junkAttrs = [...new Set([...markup.matchAll(/\s(data-page-[a-z-]+)=/g)].map((m) => m[1]))];
 if (junkAttrs.length === 0) {
   ok('没有 data-page-* 残留属性');
@@ -137,8 +137,7 @@ for (const anchor of anchors) {
 
 console.log('\n== 7. 图片的 alt ==');
 // alt 是图片加载失败时的替代文字，也是视障用户理解图片的唯一途径。
-// 它很容易在改代码时被删掉，而且**页面看起来完全正常**，人工发现不了——
-// 这正是最适合交给机器查的那类问题。
+// 它很容易在改代码时被删掉，而且页面看起来完全正常，人工发现不了。
 const WEAK_ALT = new Set(['图片', '照片', 'image', 'photo', 'img']);
 const imgs = [...markup.matchAll(/<img[^>]*>/g)].map((m) => m[0]);
 for (const tag of imgs) {

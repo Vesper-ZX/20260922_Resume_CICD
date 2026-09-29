@@ -20,189 +20,194 @@
 
   <div class="reading-progress" id="reading-progress"></div>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#about">我的主页</a>
-      <!-- 导航的 href 必须对应下面某个栏目的 id，加栏目时要同步加一行 -->
-      <nav aria-label="主导航">
-        <a href="#about">关于</a>
-        <a href="#experience">经历</a>
-        <a href="#projects">项目</a>
-        <a href="#skills">竞赛</a>
-        <a href="#portfolio">作品</a>
-        <a href="#teaching">学习</a>
-        <a href="#publications">记录</a>
-      </nav>
+  <div class="layout">
+    <!-- 侧栏：站点名 + 栏目导航 + 联系方式。宽屏固定在左侧不随正文滚动；
+         1023px 以下收成顶部一条（见 styles.css「响应式」一节）。 -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <a class="brand" href="#about">我的主页</a>
+        <!-- 导航的 href 必须对应下面某个栏目的 id，加栏目时要同步加一行 -->
+        <nav aria-label="主导航">
+          <a href="#about">关于</a>
+          <a href="#experience">经历</a>
+          <a href="#projects">项目</a>
+          <a href="#portfolio">作品</a>
+          <a href="#learn">学习</a>
+        </nav>
+        <div class="sidebar-contact">
+          <span>联系</span>
+          <a href="mailto:versper_zx@qq.com">versper_zx@qq.com</a>
+          <p>广东珠海</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="content">
+      <main id="main">
+        <!-- 日常维护只改这个文件：加内容＝复制对应元素，加栏目＝用文件末尾的模板。
+             红线：图片 alt 不能空；id 不能重复；这 5 个 id 一个都不能删 ——
+             #reading-progress #section-indicator #to-top #works-tags #works-sort
+             完整说明见 README.md「日常维护说明」 -->
+
+        <section class="hero" id="about">
+          <div class="container">
+            <div class="hero-top">
+              <div class="hero-copy">
+                <h1>高翎翔 <span>Gao</span></h1>
+                <p class="hero-role">人工智能技术应用专业学生 · Vibe Coding开发学习者</p>
+                <p class="hero-school">广东科学技术职业学院 · 25大模型应用产业学院班</p>
+              </div>
+              <div class="hero-visual">
+                <figure><img src="imgs/Profile.jpg" alt="个人头像" width="220" height="220"></figure>
+              </div>
+            </div>
+
+            <div class="research-direction">
+              <span>学习方向</span>
+              <p>HTML5、CSS3、JavaScript，正在学习 Git、数据库与网站部署。</p>
+            </div>
+
+            <!-- 加一条资料：复制下面任意一个 <div> -->
+            <div class="profile-details">
+              <div><span>学习阶段</span><p>在校学习</p></div>
+              <div><span>籍贯</span><p>广东汕头</p></div>
+              <div><span>学校地址</span><p>广东省珠海市金湾区珠海大道南侧65号</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="experience">
+          <div class="container">
+            <h2 class="section-heading">教育经历</h2>
+            <!-- 加一条经历：复制下面整个 <div class="experience-item"> -->
+            <div class="experience-item">
+              <p class="experience-heading">
+                <strong>广东科学技术职业学院 · 人工智能技术应用专业</strong>
+                <span class="experience-status">在读</span>
+              </p>
+              <p class="experience-detail">学习网页开发，用项目记录成长。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="projects">
+          <div class="container">
+            <h2 class="section-heading">项目与竞赛</h2>
+
+            <div class="group">
+              <h3>项目经历</h3>
+              <!-- 加一个项目：复制下面整个 <article class="research-item"> -->
+              <article class="research-item">
+                <h3><span class="research-source">课程练习</span>个人主页</h3>
+                <p>项目内容：制作自己的网页，展示资料与作品，记录修改、测试与发布过程。</p>
+              </article>
+              <article class="research-item">
+                <h3><span class="research-source">软件杯</span>龙芯架构软件实训智能评价系统</h3>
+                <p>项目内容：基于LLM+RAG的信创智能实训评价平台，四端协同，融合语义指纹评分一致性与多维智能评价，支持报表导出。</p>
+              </article>
+              <article class="research-item">
+                <h3><span class="research-source">作品赛</span>热点洞察</h3>
+                <p>项目内容：多模态多智能体热点洞察与报告生成平台，集可信源采集、辩论分析、提示词优化于一体。</p>
+              </article>
+            </div>
+
+            <div class="group">
+              <h3>竞赛经历</h3>
+              <!-- 加一个奖项：复制下面任意一个 <li>，<strong> 里写级别 -->
+              <ul class="skills-list">
+                <li><strong>国家级</strong>第十五届“中国软件杯”大学生软件设计大赛全国总决赛B1组二等奖</li>
+                <li><strong>省级</strong>第十七届蓝桥杯软件赛Java软件开发大学C组广东赛区三等奖</li>
+                <li><strong>校级</strong>广东科学技术职业学院2026年“AI+”科技节之数学建模竞赛三等奖</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 加一个作品：复制下面整个 <li class="work-card">，改 5 处 ——
+             data-tags 筛选标签 ｜ data-year 年份 ｜ a href 网址 ｜ img src+alt 截图 ｜ h3+p 标题与说明
+             封面底色默认米色，加 work-community 换成绿色。
+             改完要同步 works-data.js 里对应的数组项，否则自检第 8 项会失败。 -->
+        <section class="section" id="portfolio">
+          <div class="container">
+            <h2 class="section-heading">作品门户</h2>
+            <div class="works-toolbar">
+              <div class="works-tags" id="works-tags"></div>
+              <button class="works-sort" id="works-sort" type="button">按年份：新→旧</button>
+            </div>
+            <ol class="portfolio-list">
+              <li class="work-card" data-tags="前端 后端 数据库" data-year="2026">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <div class="work-cover">
+                    <img src="imgs/HotInsight.png" alt="热点洞察首页截图" width="2559" height="1345" decoding="async">
+                  </div>
+                  <div class="work-copy">
+                    <h3>热点洞察</h3>
+                    <p>2026年海峡两岸暨港澳地区大学生计算机创新作品赛广东省赛优秀奖</p>
+                  </div>
+                </a>
+              </li>
+              <li class="work-card work-community" data-tags="前端 数据库 部署" data-year="2026">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <div class="work-cover">
+                    <img src="imgs/EvalAI.png" alt="龙芯架构软件实训智能评价系统首页截图" width="2559" height="1345" decoding="async">
+                  </div>
+                  <div class="work-copy">
+                    <h3>龙芯架构软件实训智能评价系统</h3>
+                    <p>“中国软件杯”大学生软件设计大赛B1组全国总决赛二等奖</p>
+                  </div>
+                </a>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section" id="learn">
+          <div class="container">
+            <h2 class="section-heading">学习记录</h2>
+
+            <div class="group">
+              <h3>本学期目标</h3>
+              <!-- 加一条：复制下面任意一个 <li> -->
+              <ol>
+                <li>每次课完成一个可运行的小改动。</li>
+                <li>能解释自己修改的 HTML、CSS 和 JavaScript。</li>
+                <li>使用 Git 记录版本，让作品能被别人访问。</li>
+              </ol>
+            </div>
+
+            <div class="group">
+              <h3>我的记录</h3>
+              <!-- 加一条：复制下面任意一个 <li> -->
+              <ol>
+                <li>完成第一张个人主页。</li>
+                <li>后续部署作品后在这里补充真实链接。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- 栏目模板：新增栏目时，复制下面整个 <section>，改 id 和标题，
+             并到上面侧栏 <nav> 里加一行 <a href="#新id">栏目名</a>（href 与 id 必须完全一致）。
+
+        <section class="section" id="new-section">
+          <div class="container">
+            <h2 class="section-heading">栏目名称</h2>
+            <p>正文内容。</p>
+          </div>
+        </section>
+        -->
+      </main>
+
+      <footer>
+        <div class="container footer-inner">
+          <a href="#about">回到顶部</a>
+          <a href="#portfolio">作品门户</a>
+        </div>
+      </footer>
     </div>
-  </header>
-
-  <main id="main">
-    <!-- 日常维护只改这个文件：加内容＝复制对应元素，加栏目＝用文件末尾的模板。
-         红线：图片 alt 不能空；id 不能重复；这 5 个 id 一个都不能删 ——
-         #reading-progress #section-indicator #to-top #works-tags #works-sort
-         完整说明见 README.md「日常维护说明」 -->
-
-    <section class="hero" id="about">
-      <div class="container">
-        <div class="hero-top">
-          <div class="hero-copy">
-            <h1>高翎翔 <span>Gao</span></h1>
-            <p class="hero-role">人工智能技术应用专业学生 · Vibe Coding开发学习者</p>
-            <p class="hero-school">广东科学技术职业学院 · 25大模型应用产业学院班</p>
-          </div>
-          <div class="hero-visual">
-            <figure><img src="imgs/Profile.jpg" alt="个人头像" width="220" height="220"></figure>
-          </div>
-        </div>
-
-        <div class="research-direction" id="research-direction">
-          <span>学习方向</span>
-          <p>HTML5、CSS3、JavaScript，正在学习 Git、数据库与网站部署。</p>
-        </div>
-
-        <!-- 加一条资料：复制下面任意一个 <div> -->
-        <div class="profile-details">
-          <div><span>学习阶段</span><p>在校学习</p></div>
-          <div><span>所在城市</span><p>广东珠海</p></div>
-          <div><span>籍贯</span><p>广东汕头</p></div>
-          <div><span>联系</span><p>versper_zx@qq.com</p></div>
-          <div><span>学校地址</span><p>广东省珠海市金湾区珠海大道南侧65号</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="container">
-        <h2 class="section-heading">教育经历</h2>
-        <!-- 加一条经历：复制下面整个 <div class="experience-item"> -->
-        <div class="experience-item">
-          <p class="experience-heading">
-            <strong>广东科学技术职业学院 · 人工智能技术应用专业</strong>
-            <span class="experience-status">在读</span>
-          </p>
-          <p class="experience-detail">学习网页开发，用项目记录成长。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container">
-        <h2 class="section-heading">项目经历</h2>
-        <!-- 加一个项目：复制下面整个 <article class="research-item"> -->
-        <article class="research-item">
-          <h3><span class="research-source">课程练习</span>个人主页</h3>
-          <p>项目内容：制作自己的网页，展示资料与作品，记录修改、测试与发布过程。</p>
-        </article>
-        <article class="research-item">
-          <h3><span class="research-source">软件杯</span>龙芯架构软件实训智能评价系统</h3>
-          <p>项目内容：基于LLM+RAG的信创智能实训评价平台，四端协同，融合语义指纹评分一致性与多维智能评价，支持报表导出。</p>
-        </article>
-        <article class="research-item">
-          <h3><span class="research-source">作品赛</span>热点洞察</h3>
-          <p>项目内容：多模态多智能体热点洞察与报告生成平台，集可信源采集、辩论分析、提示词优化于一体。</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="skills">
-      <div class="container">
-        <h2 class="section-heading">竞赛经历</h2>
-        <!-- 加一个奖项：复制下面任意一个 <li>，<strong> 里写级别 -->
-        <ul class="skills-list">
-          <li><strong>国家级</strong>第十五届“中国软件杯”大学生软件设计大赛全国总决赛B1组二等奖</li>
-          <li><strong>省级</strong>第十七届蓝桥杯软件赛Java软件开发大学C组广东赛区三等奖</li>
-          <li><strong>校级</strong>广东科学技术职业学院2026年“AI+”科技节之数学建模竞赛三等奖</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 加一个作品：复制下面整个 <li class="work-card">，改 5 处 ——
-         data-tags 筛选标签 ｜ data-year 年份 ｜ a href 网址 ｜ img src+alt 截图 ｜ h3+p 标题与说明
-         封面底色默认米色，加 work-community 换成绿色。
-         改完要同步 works-data.js 里对应的数组项，否则自检第 8 项会失败。 -->
-    <section class="section" id="portfolio">
-      <div class="container">
-        <h2 class="section-heading">作品门户</h2>
-        <div class="works-toolbar">
-          <div class="works-tags" id="works-tags"></div>
-          <button class="works-sort" id="works-sort" type="button">按年份：新→旧</button>
-        </div>
-        <ol class="portfolio-list">
-          <li class="work-card" data-tags="前端 后端 数据库" data-year="2026">
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <div class="work-cover">
-                <img src="imgs/HotInsight.png" alt="热点洞察首页截图" width="2559" height="1345" decoding="async">
-              </div>
-              <div class="work-copy">
-                <h3>热点洞察</h3>
-                <p>2026年海峡两岸暨港澳地区大学生计算机创新作品赛广东省赛优秀奖</p>
-              </div>
-            </a>
-          </li>
-          <li class="work-card work-community" data-tags="前端 数据库 部署" data-year="2026">
-            <a href="#" target="_blank" rel="noopener noreferrer">
-              <div class="work-cover">
-                <img src="imgs/EvalAI.png" alt="龙芯架构软件实训智能评价系统首页截图" width="2559" height="1345" decoding="async">
-              </div>
-              <div class="work-copy">
-                <h3>龙芯架构软件实训智能评价系统</h3>
-                <p>“中国软件杯”大学生软件设计大赛B1组全国总决赛二等奖</p>
-              </div>
-            </a>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="teaching">
-      <div class="container">
-        <h2 class="section-heading">学习与实践</h2>
-        <div class="teaching-group">
-          <h3>本学期目标</h3>
-          <!-- 加一条：复制下面任意一个 <li> -->
-          <ol>
-            <li>每次课完成一个可运行的小改动。</li>
-            <li>能解释自己修改的 HTML、CSS 和 JavaScript。</li>
-            <li>使用 Git 记录版本，让作品能被别人访问。</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="publications">
-      <div class="container">
-        <h2 class="section-heading">学习记录</h2>
-        <div class="publication-group">
-          <h3>我的记录</h3>
-          <!-- 加一条：复制下面任意一个 <li> -->
-          <ol class="references">
-            <li>完成第一张个人主页。</li>
-            <li>后续部署作品后在这里补充真实链接。</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <!-- 栏目模板：新增栏目时，复制下面整个 <section>，改 id 和标题，
-         并到上面 <nav> 里加一行 <a href="#新id">栏目名</a>（href 与 id 必须完全一致）。
-
-    <section class="section" id="new-section">
-      <div class="container">
-        <h2 class="section-heading">栏目名称</h2>
-        <p>正文内容。</p>
-      </div>
-    </section>
-    -->
-  </main>
+  </div>
 
   <p class="section-indicator" id="section-indicator" aria-live="polite"></p>
   <button class="to-top" id="to-top" type="button" aria-label="返回页面顶部">↑</button>
-
-  <footer>
-    <div class="container footer-inner">
-      <a href="#about">回到顶部</a>
-      <a href="#portfolio">作品门户</a>
-    </div>
-  </footer>
 </body>
 </html>
